@@ -8,6 +8,8 @@ if ~exist('ui_is_running','var')    % does the variable 'ui_is_running' exist?
     ui_is_running = 1;              % and create the variable
     s = [];                         % create also an empty array to store the signal
     Fs = [];                        % create the sampling frequency
+    o = 0;                        % create the sampling frequency
+    Rms = 0; 
 end
 
 %% create a list of commands (the menu)
@@ -19,6 +21,7 @@ commandstr = {...
     '4) neutralize offset',...
     '5) fade in',...
     '6) fade out',...
+    '7) normalize rms',...
     };
 
 Ncommands = size(commandstr,2);         % the number of commands
@@ -41,10 +44,10 @@ switch command_id
         savedat_file(s,Fs);                     % write s and Fs to a file
         textbased_ui_template                   % loop back to the beginning
     case 3
-        empty_func;                             % just an empty placeholder (as yet)
+        [o,Rms] = calc_offset(s);                        % just an empty placeholder (as yet)
         textbased_ui_template                   % loop back to the beginning
     case 4
-        empty_func;                             % just an empty placeholder (as yet)
+        [a,o,Rms] = neutralize_offset(o,s,Rms);                      % just an empty placeholder (as yet)
         textbased_ui_template                   % loop back to the beginning
     case 5
         empty_func;                             % just an empty placeholder (as yet)
@@ -52,9 +55,12 @@ switch command_id
     case 6
         empty_func;                             % just an empty placeholder (as yet)
         textbased_ui_template                   % loop back to the beginning
+    case 7
+        [Rms,s] = normalize_rms (s,Rms);                             % just an empty placeholder (as yet)
+        textbased_ui_template
     otherwise
         fprintf(1,'\ninvalid command');
-        pause(2);
+        pause(5);
 end
         
     
