@@ -1,10 +1,12 @@
-function [Rms,s] = normalize_rms (s,Rms)
+function [Rms,s] = normalize_rms (s,Rms,o,FileName,Fs)
 if (o == 0 )
-    calc_offset(s);
+   [o,Rms] = calc_offset(s);
 end   
 s = (1/Rms) * s;
 close all;
 plot(s);
-fprintf(1,'RMS normalized');
+fprintf(1,'RMS normalized\n');
+title([FileName '  Nsamples = ' num2str(size(s,1)) '  Fs = ' num2str(Fs) ])
+print -r300 -dpng normalized.png 
 pause(5)
 end

@@ -49,7 +49,7 @@ switch command_id
         [o,Rms] = calc_offset(s);                        % just an empty placeholder (as yet)
         textbased_ui_template                   % loop back to the beginning
     case 4
-        [a,o,Rms] = neutralize_offset(o,s,Rms);                      % just an empty placeholder (as yet)
+        [o,Rms] = neutralize_offset(o,s,Rms,FileName,Fs);                      % just an empty placeholder (as yet)
         textbased_ui_template                   % loop back to the beginning
     case 5
         [s] = fade_in(s,Fs,FileName);                     % just an empty placeholder (as yet)
@@ -58,7 +58,7 @@ switch command_id
         [s] = fade_out(s,Fs,FileName);                             % just an empty placeholder (as yet)
         textbased_ui_template                    % loop back to the beginning
     case 7
-        [Rms,s] = normalize_rms (s,Rms);                             % just an empty placeholder (as yet)
+        [Rms,s] = normalize_rms (s,Rms,o,FileName,Fs);                             % just an empty placeholder (as yet)
         textbased_ui_template
     otherwise
         fprintf(1,'\ninvalid command');

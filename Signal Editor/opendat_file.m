@@ -14,5 +14,6 @@ end
 figure(1);
 plot(s);                                                            % plot the signal
 title([FileName '  Nsamples = ' num2str(size(s,1)) '  Fs = ' num2str(Fs) ])
+print -r300 -dpng fileopen.png 
                                                                     % and add some info at the title
 end
