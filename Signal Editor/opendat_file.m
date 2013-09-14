@@ -1,4 +1,4 @@
-function [s,Fs] = opendat_file
+function [s, Fs, FileName, PathName] = opendat_file
 %OPENDAT_FILE open een data file with a signal and plot it
 %   This function open data files
 %   s:  array with the signal

@@ -8,6 +8,8 @@ if ~exist('ui_is_running','var')    % does the variable 'ui_is_running' exist?
     ui_is_running = 1;              % and create the variable
     s = [];                         % create also an empty array to store the signal
     Fs = [];                        % create the sampling frequency
+    FileName = [];                  % create the sampling frequency
+    PathName = [];                  % create the sampling frequency
     o = 0;                        % create the sampling frequency
     Rms = 0; 
 end
@@ -38,7 +40,7 @@ command_id = input('\nEnter your command: ');
 switch command_id
     case 0                                      % just do nothing: then the loop will terminate
     case 1
-        [s, Fs, FileName, PathName] = opendat_file;                  % open and read a file; then plot; then return the results in s and Fs
+        [s, Fs, FileName, PathName] = opendat_file; 
         textbased_ui_template                   % loop back to the beginning
     case 2
         savedat_file(s,Fs);                     % write s and Fs to a file
