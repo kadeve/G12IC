@@ -38,7 +38,7 @@ command_id = input('\nEnter your command: ');
 switch command_id
     case 0                                      % just do nothing: then the loop will terminate
     case 1
-        [s, Fs] = opendat_file;                 % open and read a file; then plot; then return the results in s and Fs
+        [s, Fs, FileName, PathName] = opendat_file;                  % open and read a file; then plot; then return the results in s and Fs
         textbased_ui_template                   % loop back to the beginning
     case 2
         savedat_file(s,Fs);                     % write s and Fs to a file
@@ -50,11 +50,11 @@ switch command_id
         [a,o,Rms] = neutralize_offset(o,s,Rms);                      % just an empty placeholder (as yet)
         textbased_ui_template                   % loop back to the beginning
     case 5
-        empty_func;                             % just an empty placeholder (as yet)
+        [s] = fade_in(s,Fs,FileName);                     % just an empty placeholder (as yet)
         textbased_ui_template                   % loop back to the beginning
     case 6
-        empty_func;                             % just an empty placeholder (as yet)
-        textbased_ui_template                   % loop back to the beginning
+        [s] = fade_out(s,Fs,FileName);                             % just an empty placeholder (as yet)
+        textbased_ui_template                    % loop back to the beginning
     case 7
         [Rms,s] = normalize_rms (s,Rms);                             % just an empty placeholder (as yet)
         textbased_ui_template
