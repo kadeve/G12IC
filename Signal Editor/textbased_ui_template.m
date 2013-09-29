@@ -24,6 +24,7 @@ commandstr = {...
     '5) fade in',...
     '6) fade out',...
     '7) normalize rms',...
+    '8) rectify',...
     };
 
 Ncommands = size(commandstr,2);         % the number of commands
@@ -36,6 +37,7 @@ end
 command_id = input('\nEnter your command: ');
 
 
+load('lips.mat');               %loading y axis
 %% switch to the function associated with the given command
 switch command_id
     case 0                                      % just do nothing: then the loop will terminate
@@ -59,6 +61,9 @@ switch command_id
         textbased_ui_template                    % loop back to the beginning
     case 7
         [Rms,s] = normalize_rms (s,Rms,o,FileName,Fs);                             % just an empty placeholder (as yet)
+        textbased_ui_template
+    case 8
+        [s,wx] = recti(s,y);                             % just an empty placeholder (as yet)
         textbased_ui_template
     otherwise
         fprintf(1,'\ninvalid command');
