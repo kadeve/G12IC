@@ -1,5 +1,7 @@
 function [s,wx] = recti(s,y)
 s = abs(s); % |s|  recitified signal
+plot(s);
+print -r300 -dpng rectifiedgraph.png %creating output image as png
 i1 = round(numel(s)); % count samples
 wx = linspace(0,0,90); %define variable and start with zero values
 
@@ -10,11 +12,13 @@ end
 
 [b,a]=butter(2,100/1000,'low'); %smoothing output with applying a secondary digital filter
 wx=filtfilt(b,a,wx);
+plot(wx);
+print -r300 -dpng wxgraph.png %creating output image as png
 plot(wx(510:620),y(510:620));
 
 title('ECG'); %added title
 xlabel('Voltage [mV]');
 ylabel('Lip Movement [mm]');
-print -r300 -dpng rectifygraph.png %creating output image as png
+print -r300 -dpng calibgraph.png %creating output image as png
 end
 
